@@ -1,44 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace MusicSorter
 {
-    public partial class Form1 : Form
+    public partial class MainForm : MetroFramework.Forms.MetroForm
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SortBtn_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                folderPath1TBox.Text = fbd.SelectedPath;
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                folderPath2TBox.Text = fbd.SelectedPath;
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (folderPath1TBox.Text!="" && folderPath2TBox.Text!="")
+            if (folderPath1TBox.Text != "" && folderPath2TBox.Text != "")
             {
                 string[] files = Directory.GetFiles(folderPath1TBox.Text);
                 for (int i = 0; i < files.Length; i++)
@@ -48,19 +24,12 @@ namespace MusicSorter
                         var mp3file = TagLib.File.Create(files[i]);
                         string dir = String.Join(", ", mp3file.Tag.Performers);
                         for (int k = 0; k < dir.Length; k++)
-                            if (dir[k] == ':' || dir[k] == '\\' || dir[k] == '|' || dir[k] == '/' || dir[k] == '<' || dir[k] == '>' || dir[k] == '*' || dir[k] == '?' || dir[k]=='\"')
+                            if (dir[k] == ':' || dir[k] == '\\' || dir[k] == '|' || dir[k] == '/' || dir[k] == '<' || dir[k] == '>' || dir[k] == '*' || dir[k] == '?' || dir[k] == '\"')
                             {
                                 dir = dir.Remove(k, 1);
                                 k--;
                             }
-                        string[] str = files[i].Split('\\');
-                        string name = str[str.Length - 1];
-                        for (int k=0; k<name.Length; k++)
-                            if (name[k] == ':' || name[k] == '\\' || name[k] == '|' || name[k] == '/' || name[k] == '<' || name[k] == '>' || name[k] == '*' || name[k] == '?' || name[k] == '\"')
-                            {
-                                name = name.Remove(k, 1);
-                                k--;
-                            }
+                        string name = mp3file.Tag.Title + ".mp3";
                         string path = folderPath2TBox.Text + @"\" + dir;
                         if (dir != "")
                         {
@@ -89,8 +58,37 @@ namespace MusicSorter
                         }
                     }
                 }
-                MessageBox.Show("Завершено");
+                MetroFramework.Forms.MetroMessageBox msgBox = new MetroFramework.Forms.MetroMessageBox();
+                msgBox.Text = "Завершено";
+                msgBox.Style = MetroFramework.MetroColorStyle.Yellow;
+                msgBox.Theme = MetroFramework.MetroThemeStyle.Light;
+                msgBox.Size = new Size(284,109);
+                msgBox.Show();
             }
+        }
+
+        private void SearchBtn2_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                folderPath2TBox.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void SearchBtn1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                folderPath1TBox.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void PrepareFormShowBtn_Click(object sender, EventArgs e)
+        {
+            PrepareForm pFrom = new PrepareForm();
+            pFrom.ShowDialog();
         }
     }
 }
