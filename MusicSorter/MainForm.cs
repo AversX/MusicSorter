@@ -22,14 +22,14 @@ namespace MusicSorter
                     if (files[i].Contains("mp3"))
                     {
                         var mp3file = TagLib.File.Create(files[i]);
-                        string dir = String.Join(", ", mp3file.Tag.Performers);
+                        string dir = String.Join(", ", mp3file.Tag.Performers.Length != 0 ? StringConverter.toUtf8(mp3file.Tag.Performers[0]) : "");
                         for (int k = 0; k < dir.Length; k++)
                             if (dir[k] == ':' || dir[k] == '\\' || dir[k] == '|' || dir[k] == '/' || dir[k] == '<' || dir[k] == '>' || dir[k] == '*' || dir[k] == '?' || dir[k] == '\"')
                             {
                                 dir = dir.Remove(k, 1);
                                 k--;
                             }
-                        string name = mp3file.Tag.Title + ".mp3";
+                        string name = StringConverter.toUtf8(mp3file.Tag.Title) + ".mp3";
                         string path = folderPath2TBox.Text + @"\" + dir;
                         if (dir != "")
                         {
@@ -89,6 +89,20 @@ namespace MusicSorter
         {
             PrepareForm pFrom = new PrepareForm();
             pFrom.ShowDialog();
+        }
+
+        private void metroTabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (metroTabControl1.SelectedIndex==1 && this.Height!=595)
+            {
+                for(int i=0; i<67; i++)
+                    this.Height+=5;
+            }
+            else if(metroTabControl1.SelectedIndex == 0 && this.Height != 260)
+            {
+                for (int i = 0; i < 67; i++)
+                    this.Height -= 5;
+            }
         }
     }
 }

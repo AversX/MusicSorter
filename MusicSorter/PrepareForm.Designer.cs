@@ -40,6 +40,7 @@
             this.NameTBox = new MetroFramework.Controls.MetroTextBox();
             this.OkBtn = new MetroFramework.Controls.MetroButton();
             this.DelBtn = new MetroFramework.Controls.MetroButton();
+            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.SuspendLayout();
             // 
             // ScanBtn
@@ -167,11 +168,23 @@
             this.DelBtn.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
             // 
+            // metroProgressBar1
+            // 
+            this.metroProgressBar1.Location = new System.Drawing.Point(10, 284);
+            this.metroProgressBar1.Name = "metroProgressBar1";
+            this.metroProgressBar1.Size = new System.Drawing.Size(300, 23);
+            this.metroProgressBar1.Step = 1;
+            this.metroProgressBar1.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.metroProgressBar1.TabIndex = 11;
+            this.metroProgressBar1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroProgressBar1.Visible = false;
+            // 
             // PrepareForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(320, 563);
+            this.ClientSize = new System.Drawing.Size(320, 560);
+            this.Controls.Add(this.metroProgressBar1);
             this.Controls.Add(this.DelBtn);
             this.Controls.Add(this.OkBtn);
             this.Controls.Add(this.NameTBox);
@@ -207,5 +220,6 @@
         private MetroFramework.Controls.MetroTextBox NameTBox;
         private MetroFramework.Controls.MetroButton OkBtn;
         private MetroFramework.Controls.MetroButton DelBtn;
+        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
     }
 }
