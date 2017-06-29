@@ -128,7 +128,7 @@
             this.metroTabControl1.ItemSize = new System.Drawing.Size(145, 31);
             this.metroTabControl1.Location = new System.Drawing.Point(8, 63);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(301, 535);
             this.metroTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -147,7 +147,8 @@
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 35);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(293, 157);
+            this.metroTabPage1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.metroTabPage1.Size = new System.Drawing.Size(293, 496);
             this.metroTabPage1.Style = MetroFramework.MetroColorStyle.Yellow;
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Sort";
@@ -200,6 +201,7 @@
             this.DelBtn.TabIndex = 23;
             this.DelBtn.Text = "Удалить";
             this.DelBtn.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
             // 
             // OkBtn
             // 
@@ -210,6 +212,7 @@
             this.OkBtn.TabIndex = 22;
             this.OkBtn.Text = "Применить";
             this.OkBtn.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.OkBtn.Click += new System.EventHandler(this.OkBtn_Click);
             // 
             // NameTBox
             // 
@@ -281,6 +284,7 @@
             this.FilesLBox.Name = "FilesLBox";
             this.FilesLBox.Size = new System.Drawing.Size(293, 145);
             this.FilesLBox.TabIndex = 15;
+            this.FilesLBox.SelectedIndexChanged += new System.EventHandler(this.FilesLBox_SelectedIndexChanged);
             // 
             // FolderPathTBox
             // 
@@ -300,6 +304,7 @@
             this.FolderSearchBtn.TabIndex = 12;
             this.FolderSearchBtn.Text = "Обзор";
             this.FolderSearchBtn.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.FolderSearchBtn.Click += new System.EventHandler(this.FolderSearchBtn_Click);
             // 
             // ScanBtn
             // 
@@ -310,6 +315,7 @@
             this.ScanBtn.TabIndex = 13;
             this.ScanBtn.Text = "Сканировать";
             this.ScanBtn.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ScanBtn.Click += new System.EventHandler(this.ScanBtn_Click);
             // 
             // MainForm
             // 
